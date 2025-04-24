@@ -1,29 +1,59 @@
-#include<iostream>
-#include<cmath>
+#include <vector>
+#include <iostream> 
+#include <string>
+#include <sstream>
+#include <map>
+#include <queue>
+#include <deque>
+#include <algorithm>
+#include <stack>
+#include <unordered_map>
+#include <set>
+#include <regex>
+#include <tuple>
+#include <cmath>
+
+
 using namespace std;
 
-int arr[1000001];
+
+
 int main(void)
 {
-	int n, m;
-	cin >> n >> m;
-	for (int i = 2; i <= m; i++)
-		arr[i] = i;
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    std::cout.tie(NULL);
 
-	for (int i = 2; i <= sqrt(m); i++)	
-	{
-		if (arr[i] == 0)	
-			continue;
-		for (int j = i * i; j <= m; j += i)	
-			arr[j] = 0;
-	}
+    int n, m;
+    cin >> m >> n;
+    vector<int> v(n + 1);
 
-	for (int i = n; i <= m; i++)
-	{
-		if (arr[i] == 0)
-			continue;
-		else
-			cout << arr[i] << '\n';
-	}
-	return 0;
+    for (int i = 2; i <= n; i++)
+    {
+        v[i] = i;
+    }
+
+    for (int i = 2; i <= sqrt(n); i++)
+    {
+        if (v[i] == 0)
+        {
+            continue;
+        }
+        for (int j = i + i; j <= n; j = j + i)
+        {
+            v[j] = 0;
+        }
+    }
+
+    for (int i = m; i <= n; i++)
+    {
+        if (v[i] != 0)
+        {
+            cout << v[i] << '\n';
+        }
+    } 
+
+    
+    return 0;
 }
+
