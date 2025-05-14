@@ -1,3 +1,28 @@
+
+```mermaid
+flowchart TD
+    A["Start"] 
+    A --> B["Initialize dp array of size y+1 with -1\nSet dp[x] = 0"]
+    B --> C["For i = x to y"]
+    C --> D{"dp[i] == -1?"}
+    D -- "Yes" --> C
+    D -- "No"  --> E["nextCnt = dp[i] + 1"]
+    E --> F{"i + n ≤ y?"}
+    F -- "Yes" --> G["dp[i+n] = min(dp[i+n], nextCnt)"]
+    F -- "No"  --> H
+    G --> H
+    H --> I{"i × 2 ≤ y?"}
+    I -- "Yes" --> J["dp[i*2] = min(dp[i*2], nextCnt)"]
+    I -- "No"  --> K
+    J --> K
+    K --> L{i × 3 ≤ y?}
+    L -- "Yes" --> M["dp[i*3] = min(dp[i*3], nextCnt)"]
+    L -- "No"  --> N
+    M --> N
+    N --> O["Return dp[y] (-1 if unreachable)"]
+
+```
+
 # [level 2] 숫자 변환하기 - 154538 
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/154538) 
@@ -86,24 +111,3 @@
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges
 
-```mermaid
-flowchart TD
-    A["Start"] 
-    A --> B["Initialize dp array of size y+1 with -1\nSet dp[x] = 0"]
-    B --> C["For i = x to y"]
-    C --> D{"dp[i] == -1?"}
-    D -- "Yes" --> C
-    D -- "No"  --> E["nextCnt = dp[i] + 1"]
-    E --> F{"i + n ≤ y?"}
-    F -- "Yes" --> G["dp[i+n] = min(dp[i+n], nextCnt)"]
-    F -- "No"  --> H
-    G --> H
-    H --> I{"i × 2 ≤ y?"}
-    I -- "Yes" --> J["dp[i*2] = min(dp[i*2], nextCnt)"]
-    I -- "No"  --> K
-    J --> K
-    K --> L{i × 3 ≤ y?}
-    L -- "Yes" --> M["dp[i*3] = min(dp[i*3], nextCnt)"]
-    L -- "No"  --> N
-    M --> N
-    N --> O["Return dp[y] (-1 if unreachable)"]
