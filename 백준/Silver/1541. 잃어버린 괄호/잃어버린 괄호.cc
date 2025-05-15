@@ -12,13 +12,11 @@
 #include <regex>
 #include <tuple>
 #include <cmath>
-
+#include <cstddef> 
 
 using namespace std;
 
 
-vector<string> split(string input, char delimiter);
-int mySum(string a);
 
 
 
@@ -28,51 +26,41 @@ int main(void)
     cin.tie(NULL);
     std::cout.tie(NULL);
 
-    int answer = 0;
-    string example;
-    cin >> example;
-    vector<string> str = split(example, '-');
+    string str = "", temp = "";
+    int result = 0;
+    cin >> str;
 
-    for (int i = 0; i < str.size(); i++)
+    bool minus = false;
+    for (int i = 0; i <= str.size(); i++)
     {
-        int temp = mySum(str[i]);
-        
-        if (i == 0)
+        // 부호를 만났을 때
+        if (str[i] == '+' || str[i] == '-' || str[i] == '\0')
         {
-            answer = answer + temp;
+            // 이전 값이 - 였다면 이전 값을 모두 빼준다.
+            if (minus) {
+                result -= stoi(temp);
+            }
+            // 이전 값이 -가 아니었다면 모두 더해준다
+            else {
+                result += stoi(temp);
+            }
+            // 현재 부호가 - 라면 이전 값이 -가 된다는 걸 알려준다.
+            temp = "";
+            if (str[i] == '-')
+            {
+                minus = true;
+            }
         }
-        else {
-            answer = answer - temp;
+        // 숫자라면 모두 더해준다.
+        else
+        {
+            temp += str[i];
         }
+
     }
 
-    cout << answer << "\n";
-    
+    cout << result;
+
     return 0;
 }
 
-vector<string> split(string input, char delimiter)
-{
-    vector<string> result;
-    stringstream ss(input);
-    string splitdata;
-
-    while (getline(ss, splitdata, delimiter))
-    {
-        result.push_back(splitdata);
-    }
-
-    return result;
-}
-
-int mySum(string a)
-{
-    int sum = 0;
-    vector<string> temp = split(a, '+');
-
-    for (int i = 0; i < temp.size(); i++)
-    {
-        sum += stoi(temp[i]);
-    }
-    return sum;
-}
