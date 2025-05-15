@@ -30,3 +30,31 @@
 
  <p>첫째 줄에 정답을 출력한다.</p>
 
+```mermaid
+flowchart TD
+    A(["Start"]) --> B["입력: 수식 문자열(str) 읽기"]
+    B --> C["변수 초기화<br/>result, temp, minus, i"]
+    C --> D{"i < str.length?"}
+    D -- "예" --> E["문자 c = str[i]"]
+    E --> F{"c == '+' or c == '-'?"}
+    F -- "예" --> G["숫자열 temp를 int로 변환 → num"]
+    F -- "아니요" --> P["숫자면 temp += c"]
+    P --> Q
+    G --> H{"minus == true?"}
+    H -- "아니요" --> I["result += num"]
+    H -- "예" --> J["result -= num"]
+    I --> K
+    J --> K
+    K["temp 초기화"]
+    K --> L{"c == '-'"}
+    L -- "예" --> M["minus = true"]
+    L -- "아니요" --> N["변경 없음"]
+    M --> Q
+    N --> Q
+    Q["i += 1"] --> D
+    D -- "아니요" --> R["출력: result"]
+    R --> S(["End"])
+
+
+    R --> S(["End"])
+```
