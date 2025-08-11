@@ -23,33 +23,30 @@ int main(void)
     cin.tie(NULL);
     std::cout.tie(NULL);
 
-    long Min, Max;
-    cin >> Min >> Max;
+    long min, max;
+    cin >> min >> max;
 
-    vector<bool> Check(Max - Min + 1);
+    vector<bool> check(max - min + 1);
 
-    for (long long i = 2; i * i <= Max; i++)
+    for (long i = 2; i * i <= max; i++)
     {
-        long long pow = i * i;
-        long long startIDX = Min / pow;
+        long pow = i * i;
+        long start_idx = min / pow;
+        if (min % pow != 0)
+            start_idx++;
 
-        if (Min % pow != 0)
-            startIDX++;
-        
-        for (long long j = startIDX; pow * j <= Max; j++)
-            Check[(int)((j * pow) - Min)] = true;
-
+        for (long j = start_idx; pow * j <= max; j++)
+            check[(int)((j * pow) - min)] = true;
     }
 
-    int count = 0;
+    int cnt = 0;
 
-    for (int i = 0; i <= Max - Min; i++)
-    {
-        if (!Check[i]) count++;
-    }
+    for (int i = 0; i <= max - min; i++)
+        if (!check[i])
+            cnt++;
 
-    cout << count << endl;
-
+    cout << cnt << endl;
+    
     return 0;
 }
 
