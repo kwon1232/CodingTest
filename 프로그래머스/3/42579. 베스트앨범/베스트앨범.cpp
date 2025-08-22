@@ -1,44 +1,42 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
 vector<int> solution(vector<string> genres, vector<int> plays) {
-    unordered_map<string, int> genreSum; 
+    unordered_map<string, int> genreSum;
     unordered_map<string, vector<pair<int,int>>> songs;
-
-    for (int i = 0; i < genres.size(); i++) {
+    
+    for (int i = 0; i < genres.size(); i++)
+    {
         genreSum[genres[i]] += plays[i];
         songs[genres[i]].push_back({plays[i], i});
     }
-
+    
     vector<pair<string,int>> sortedGenres(genreSum.begin(), genreSum.end());
     sort(sortedGenres.begin(), sortedGenres.end(),
-         [](auto &a, auto &b) {
-             return a.second > b.second;
-         });
-
+        [](auto &a, auto &b) {
+           return a.second > b.second; 
+        });
+    
     vector<int> answer;
-    for (auto &g : sortedGenres) {
+    
+    for (auto &g : sortedGenres)
+    {
         auto &vec = songs[g.first];
         
-        // ✅ 쉼표(,) 추가
-        sort(vec.begin(), vec.end(), [](auto &a, auto &b) {
-            if (a.first == b.first) return a.second < b.second;
+        sort(vec.begin(), vec.end(), [](auto &a, auto&b) {
+            if (a.first == b.first)
+            {
+                return a.second < b.second;
+            }
             return a.first > b.first;
-        });
-
-        for (int i = 0; i < vec.size() && i < 2; i++) {
-            answer.push_back(vec[i].second);
-        }
+        });    
+            for (int i = 0; i < vec.size() && i < 2; i++)
+            {
+                answer.push_back(vec[i].second);
+            }
+        
     }
-
+    
     return answer;
 }
-
-int main() {
-    vector<string> genres = {"classic", "pop", "classic", "classic", "pop"};
-    vector<int> plays = {500, 600, 150, 800, 2500};
-
-    vector<int> result = solution(genres, plays);
-    for (int x : result) cout << x << " ";
-}
-
