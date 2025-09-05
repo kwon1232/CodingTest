@@ -1,10 +1,10 @@
 # [level 3] 야근 지수 - 12927 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12927) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12927?utm_source=chatgpt.com) 
 
 ### 성능 요약
 
-메모리: 3.81 MB, 시간: 27.84 ms
+메모리: 3.82 MB, 시간: 27.38 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 03월 30일 13:36:26
+2025년 09월 05일 18:45:36
 
 ### 문제 설명
 
